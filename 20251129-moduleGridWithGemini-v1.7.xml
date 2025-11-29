@@ -64,9 +64,91 @@
     .post-body h2::before { content: ''; display: block; width: 0.5rem; height: 2rem; background-color: #9088FF; }
     .post-body h3 { font-size: 1.5rem; font-weight: 700; color: #2f333d; margin-top: 2rem; margin-bottom: 1rem; }
     .post-body p { margin-bottom: 1.5rem; word-break: keep-all; }
-    .post-body img { border-radius: 0.5rem; margin: 2rem 0; width: 100%; height: auto; object-fit: cover; }
+    .post-body img { border-radius: 0.5rem; margin: 2rem 0; width: 100%; height: auto; object-fit: cover; cursor: zoom-in; transition: opacity 0.2s; }
+    .post-body img:hover { opacity: 0.9; }
     .post-body blockquote { border-left: 4px solid #E3AEFF; padding-left: 1.5rem; font-style: italic; color: #718096; margin: 2rem 0; }
     
+    /* Toast Notification Style */
+    #toast-notification {
+        visibility: hidden;
+        min-width: 250px;
+        background-color: #2f333d;
+        color: #fff;
+        text-align: center;
+        border-radius: 50px;
+        padding: 12px 24px;
+        position: fixed;
+        z-index: 100;
+        left: 50%;
+        bottom: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s, bottom 0.3s;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    #toast-notification.show {
+        visibility: visible;
+        opacity: 1;
+        bottom: 50px;
+    }
+
+    /* Scroll Progress Bar Style */
+    #scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(90deg, #9088FF, #E3AEFF);
+        z-index: 60;
+        transition: width 0.1s;
+    }
+
+    /* [NEW] Image Lightbox Style */
+    #image-lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(47, 51, 61, 0.95); /* Main color with opacity */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+        padding: 2rem;
+        cursor: zoom-out;
+    }
+    #image-lightbox.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    #image-lightbox img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 4px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        transform: scale(0.95);
+        transition: transform 0.3s;
+    }
+    #image-lightbox.active img {
+        transform: scale(1);
+    }
+    #lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+    }
+
     /* Reset Defaults */
     .widget { margin: 0; }
     .section { margin: 0; padding: 0; }
@@ -76,6 +158,20 @@
 
 <body class='antialiased selection:bg-accent2 selection:text-main relative overflow-x-hidden'>
 
+    <!-- Scroll Progress Bar Element -->
+    <div id='scroll-progress'/>
+
+    <!-- Toast Notification Element -->
+    <div id='toast-notification'>Link Copied to Clipboard! ✨</div>
+
+    <!-- [NEW] Image Lightbox Element -->
+    <div id='image-lightbox'>
+        <div id='lightbox-close'>
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </div>
+        <img id='lightbox-img' src='' alt='Full size'/>
+    </div>
+
     <!-- NAVIGATION (Fixed) -->
     <nav class='fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center pointer-events-none'>
         <!-- Logo (Modified to use Image) -->
@@ -84,11 +180,24 @@
         </a>
 
         <!-- Menu -->
-        <div class='pointer-events-auto bg-main/80 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 flex gap-6 md:gap-8 shadow-2xl max-w-full overflow-x-auto' style='-ms-overflow-style: none; scrollbar-width: none;'>
-             <a class='text-xs md:text-sm font-bold text-white hover:text-accent1 transition-colors uppercase tracking-widest whitespace-nowrap' expr:href='data:blog.homepageUrl'>Home</a>
-             <a class='text-xs md:text-sm font-bold text-white hover:text-accent2 transition-colors uppercase tracking-widest whitespace-nowrap' href='/p/about.html'>About</a>
-             <a class='text-xs md:text-sm font-bold text-white hover:text-accent3 transition-colors uppercase tracking-widest whitespace-nowrap' href='#'>Work</a>
-             <a class='text-xs md:text-sm font-bold text-accent1 hover:text-white transition-colors uppercase tracking-widest whitespace-nowrap' href='https://arcaspai.github.io/' target='_blank'>Website</a>
+        <div class='pointer-events-auto bg-main/80 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 flex items-center gap-4 md:gap-6 shadow-2xl max-w-full overflow-x-auto' style='-ms-overflow-style: none; scrollbar-width: none;'>
+             <!-- Menu Links -->
+             <div class="flex gap-6 md:gap-8 flex-shrink-0">
+                 <a class='text-xs md:text-sm font-bold text-white hover:text-accent1 transition-colors uppercase tracking-widest whitespace-nowrap' expr:href='data:blog.homepageUrl'>Home</a>
+                 <a class='text-xs md:text-sm font-bold text-white hover:text-accent2 transition-colors uppercase tracking-widest whitespace-nowrap' href='/p/about.html'>About</a>
+                 <a class='text-xs md:text-sm font-bold text-white hover:text-accent3 transition-colors uppercase tracking-widest whitespace-nowrap' href='#'>Work</a>
+                 <a class='text-xs md:text-sm font-bold text-accent1 hover:text-white transition-colors uppercase tracking-widest whitespace-nowrap' href='https://arcaspai.github.io/' target='_blank'>Website</a>
+             </div>
+
+             <!-- Search Bar -->
+             <div class="relative flex items-center border-l border-white/20 pl-4 ml-2">
+                <form action="/search" method="get" id="search-form" class="flex items-center">
+                    <input type="text" name="q" id="search-input" class="bg-transparent border-b border-white/30 text-white placeholder-white/50 text-sm py-1 w-0 focus:border-accent1 transition-all duration-300 outline-none opacity-0" placeholder="Search..."/>
+                    <button type="button" id="search-toggle" class="text-white hover:text-accent1 transition-colors focus:outline-none ml-1">
+                        <i data-lucide="search" class="w-4 h-4 md:w-5 md:h-5"></i>
+                    </button>
+                </form>
+             </div>
         </div>
     </nav>
 
@@ -184,9 +293,25 @@
                             <div class='flex justify-between items-baseline mb-8 border-b border-gray-200 pb-4'>
                                 <h3 class='text-xl font-bold flex items-center gap-2'>
                                     <span class='w-3 h-3 bg-accent1 rounded-full'/>
-                                    Latest Posts
+                                    
+                                    <!-- Dynamic Title Logic -->
+                                    <b:if cond='data:view.isSearch and not data:view.isLabelSearch'>
+                                        <!-- Search Results -->
+                                        Search Results
+                                    <b:elseif cond='data:view.isLabelSearch'/>
+                                        <!-- Label View -->
+                                        Label: <data:blog.searchLabel/>
+                                    <b:elseif cond='data:view.isArchive'/>
+                                        <!-- Archive View (Date) -->
+                                        Archive: <data:blog.pageName/>
+                                    <b:else/>
+                                        <!-- Default Homepage -->
+                                        Latest Posts
+                                    </b:if>
                                 </h3>
-                                <span class='text-sm text-gray-400 font-mono'>Archive</span>
+                                
+                                <!-- Archive Link (Points to /search for all posts) -->
+                                <a class='text-sm text-gray-400 font-mono hover:text-accent1 transition-colors' href='/search'>View All Archive</a>
                             </div>
 
                             <div class='grid grid-cols-1 md:grid-cols-12 gap-6 mb-12'>
@@ -266,6 +391,7 @@
                                         <span class='text-main font-bold'><data:post.date/></span>
                                     </div>
                                     <div>
+                                        <!-- UPDATED: LABEL (Tags) with Links -->
                                         <span class='text-gray-400 text-xs font-mono block mb-1'>LABELS</span>
                                         <span class='text-main font-bold text-sm leading-snug block'>
                                             <b:if cond='data:post.labels'>
@@ -279,7 +405,8 @@
                                     </div>
                                     <div>
                                         <span class='text-gray-400 text-xs font-mono block mb-1'>SHARE</span>
-                                        <a class='text-accent1 font-bold hover:underline' href='#' onclick='navigator.clipboard.writeText(window.location.href); alert(&apos;Link Copied!&apos;); return false;'>Copy Link &#8599;</a>
+                                        <!-- UPDATED: Share with Toast Logic -->
+                                        <a class='text-accent1 font-bold hover:underline' href='#' onclick='copyLinkToClipboard(); return false;'>Copy Link &#8599;</a>
                                     </div>
                                 </div>
                             </header>
@@ -1015,7 +1142,116 @@
                     document.body.removeChild(script);
                 };
             }
+
+            // Scroll Progress Logic
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (scrollTop / scrollHeight) * 100;
+                document.getElementById('scroll-progress').style.width = scrolled + '%';
+            });
+
+            // [NEW] Search Toggle Logic
+            const searchToggle = document.getElementById('search-toggle');
+            const searchInput = document.getElementById('search-input');
+            const searchForm = document.getElementById('search-form');
+
+            if(searchToggle && searchInput && searchForm) {
+                searchToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (searchInput.classList.contains('w-0')) {
+                        // Open Search
+                        searchInput.classList.remove('w-0', 'opacity-0');
+                        searchInput.classList.add('w-32', 'md:w-48', 'opacity-100', 'px-2');
+                        searchInput.focus();
+                    } else {
+                        // If open, check content
+                        if (searchInput.value.trim() !== "") {
+                            searchForm.submit();
+                        } else {
+                            // Close Search
+                            searchInput.classList.add('w-0', 'opacity-0');
+                            searchInput.classList.remove('w-32', 'md:w-48', 'opacity-100', 'px-2');
+                        }
+                    }
+                });
+            }
+
+            // [NEW] Image Lightbox Logic
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const postImages = document.querySelectorAll('.post-body img');
+
+            postImages.forEach(img => {
+                // Check if image is wrapped in a link
+                const parentLink = img.closest('a');
+                
+                // Add click event
+                img.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop link navigation
+                    e.stopPropagation();
+                    
+                    // Get high-res URL
+                    let highResUrl = img.src;
+                    if (parentLink && /\.(jpg|jpeg|png|gif|webp)$/i.test(parentLink.href)) {
+                        highResUrl = parentLink.href;
+                    } else if (parentLink && parentLink.href.includes('blogger.googleusercontent.com/img')) {
+                         highResUrl = parentLink.href;
+                    } else {
+                        // Try to get high-res from src if it looks like a blogger image
+                        // Typically replace /sXXX/ or /wXXX/ with /s1600/ or similar for max res, 
+                        // but let's just use the src or parent href for safety.
+                    }
+
+                    lightboxImg.src = highResUrl;
+                    lightbox.classList.add('active');
+                });
+
+                // Also handle the parent link click to be safe
+                if (parentLink) {
+                    parentLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Trigger image click logic
+                        // img.click() might loop, so we rely on the img listener above
+                        // Just preventing default here is enough as the img is inside
+                    });
+                }
+            });
+
+            // Close Lightbox
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                setTimeout(() => lightboxImg.src = '', 300); // Clear src after fade out
+            });
+
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    setTimeout(() => lightboxImg.src = '', 300);
+                }
+            });
+            
+            // Close on Esc key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    setTimeout(() => lightboxImg.src = '', 300);
+                }
+            });
         });
+
+        // Toast Notification Logic
+        function copyLinkToClipboard() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const toast = document.getElementById('toast-notification');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
+        }
         //]]>
     </script>
 </body>
