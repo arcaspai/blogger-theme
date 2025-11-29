@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODULA - Creative Grid Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#2f333d',
+                        bg: '#fcfcfc',
+                        accent1: '#9088FF',
+                        accent2: '#E3AEFF',
+                        accent3: '#8AAEFF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-accent2 selection:text-main">
+
+    <!-- NAVIGATION BAR (Fixed) -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center pointer-events-none">
+        <!-- Logo Area (Empty purely for layout balance as the main grid has the big text) -->
+        <div class="hidden md:block"></div> 
+
+        <!-- Menu Links (Pointer events auto to make them clickable) -->
+        <div class="pointer-events-auto bg-main/80 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 flex gap-6 md:gap-8 shadow-2xl">
+            <!-- Added Home Link (Active State) -->
+            <a href="#" class="text-xs md:text-sm font-bold text-accent1 hover:text-white transition-colors uppercase tracking-widest">Home</a>
+            <a href="work.html" class="text-xs md:text-sm font-bold text-white hover:text-accent1 transition-colors uppercase tracking-widest">Work</a>
+            <a href="#" class="text-xs md:text-sm font-bold text-white hover:text-accent2 transition-colors uppercase tracking-widest">About</a>
+            <a href="#" class="text-xs md:text-sm font-bold text-white hover:text-accent3 transition-colors uppercase tracking-widest">Insights</a>
+            <a href="mailto:hello@modula.design" class="text-xs md:text-sm font-bold text-accent1 hover:text-white transition-colors uppercase tracking-widest">Contact</a>
+        </div>
+    </nav>
+
+    <!-- 
+      BANNER SECTION: Module Grid 
+      Mobile: 3 cols x 6 rows
+      Desktop: 6 cols x 3 rows
+      Background: #2f333d (main)
+    -->
+    <header class="w-full h-[100vh] max-h-[900px] bg-main p-2 md:p-4">
+        <div class="w-full h-full grid grid-cols-3 grid-rows-6 md:grid-cols-6 md:grid-rows-3 gap-1 md:gap-2">
+            
+            <!-- Cell 1: Title (Large, Outline) -->
+            <!-- Spans 3 cols on mobile, 3 cols x 2 rows on desktop -->
+            <div class="col-span-3 row-span-1 md:col-span-3 md:row-span-2 border border-white/20 p-6 flex flex-col justify-center items-start relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+                <h1 class="text-5xl md:text-8xl text-outline uppercase tracking-tighter z-10 group-hover:translate-x-2 transition-transform duration-500">
+                    Modula<br>Grid
+                </h1>
+                <p class="text-accent2 mt-4 text-sm md:text-lg font-medium opacity-80 z-10">Creative Digital Experience</p>
+            </div>
+
+            <!-- Cell 2: Accent Color Block -->
+            <div class="col-span-1 row-span-1 bg-accent1 grid-cell-hover flex items-center justify-center">
+                <i data-lucide="arrow-up-right" class="text-white w-8 h-8 md:w-12 md:h-12"></i>
+            </div>
+
+            <!-- Cell 3: Image -->
+            <div class="col-span-2 row-span-1 md:col-span-1 md:row-span-1 border border-white/10 relative overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition-opacity duration-500" alt="Abstract">
+            </div>
+
+            <!-- Cell 4: Text Block -->
+            <div class="col-span-3 row-span-1 md:col-span-1 md:row-span-1 bg-white/5 border border-white/10 p-4 flex flex-col justify-between">
+                <span class="text-accent3 text-xs font-mono">01 / INTRO</span>
+                <p class="text-white text-sm leading-tight">We build structure out of chaos.</p>
+            </div>
+
+            <!-- Cell 5: Accent 3 Block -->
+            <div class="hidden md:flex col-span-1 row-span-2 bg-accent3 items-end p-4 grid-cell-hover">
+                <span class="text-main font-bold text-xl writing-mode-vertical">SCROLL</span>
+            </div>
+
+            <!-- Cell 6: Empty/Grid Lines -->
+            <div class="col-span-1 row-span-1 border border-white/10 flex items-center justify-center">
+                 <div class="w-2 h-2 rounded-full bg-white/20"></div>
+            </div>
+
+             <!-- Cell 7: Image Large -->
+            <div class="col-span-2 row-span-2 md:col-span-2 md:row-span-1 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500" alt="Architecture">
+                <div class="absolute inset-0 bg-accent1/20 mix-blend-multiply"></div>
+            </div>
+
+            <!-- Cell 8: Accent 2 Block -->
+            <div class="col-span-1 row-span-1 bg-accent2 grid-cell-hover flex items-center justify-center">
+                 <i data-lucide="asterisk" class="text-main w-10 h-10 animate-spin-slow"></i>
+            </div>
+
+            <!-- Cell 9: Empty/Dark -->
+            <div class="col-span-2 md:col-span-1 row-span-1 bg-black/20 border border-white/10 flex items-center justify-center p-4">
+                <!-- Changed button to a tag for mailto link -->
+                <a href="mailto:hello@modula.design" class="flex items-center justify-center text-white text-xs border border-white/50 px-4 py-2 rounded-full hover:bg-white hover:text-main transition-colors uppercase tracking-widest w-full h-10">
+                    Contact
+                </a>
+            </div>
+
+             <!-- Cell 10: Bottom Filler (Desktop) -->
+             <div class="hidden md:block col-span-1 row-span-1 border border-white/10 relative group overflow-hidden">
+                <div class="absolute inset-0 bg-accent1 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-white/30 group-hover:text-white transition-colors">
+                    <span class="font-mono text-xs">EST. 2024</span>
+                </div>
+             </div>
+
+             <!-- Mobile only fillers to complete grid -->
+             <div class="md:hidden col-span-1 row-span-1 bg-accent3"></div>
+             <div class="md:hidden col-span-2 row-span-1 border border-white/10"></div>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-[1400px] mx-auto px-6 py-20">
+        
+        <!-- Introduction -->
+        <section class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 class="text-4xl font-bold mb-4 text-main">Selected<br><span class="text-accent1">Works</span></h2>
+                    <div class="h-1 w-20 bg-accent2"></div>
+                </div>
+                <div class="col-span-12 md:col-span-8 flex items-end">
+                    <p class="text-lg md:text-xl leading-relaxed max-w-2xl">
+                        We explore the boundaries of digital design through rigorous grid systems and bold typography.
+                        <span class="text-accent1 font-semibold">모듈형 그리드</span>와 <span class="text-accent3 font-semibold">과감한 컬러</span>의 조화를 확인하세요.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4-COLUMN ZONE (Items span 3 cols) -->
+        <!-- Request: "4컬럼 존 위주로" -> 12 / 4 items = span 3 -->
+        <section class="mb-32" id="work">
+            <div class="flex justify-between items-baseline mb-8 border-b border-gray-200 pb-4">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                    <span class="w-3 h-3 bg-accent1 rounded-full"></span>
+                    Projects (4-Column Zone)
+                </h3>
+                <!-- Updated count to 04 -->
+                <span class="text-sm text-gray-400 font-mono">01 — 04</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+                <!-- Item 1 -->
+                <article class="col-span-12 md:col-span-3 group cursor-pointer">
+                    <div class="aspect-[4/5] bg-gray-100 mb-4 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=600&auto=format&fit=crop" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" alt="Project 1">
+                        <div class="absolute top-4 right-4 bg-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-main"></i>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold group-hover:text-accent1 transition-colors">Urban Structure</h4>
+                    <p class="text-sm text-gray-500 mt-1">Architecture / Design</p>
+                </article>
+
+                <!-- Item 2 -->
+                <article class="col-span-12 md:col-span-3 group cursor-pointer">
+                    <div class="aspect-[4/5] bg-gray-100 mb-4 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-accent2 mix-blend-multiply z-10 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&auto=format&fit=crop" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" alt="Project 2">
+                    </div>
+                    <h4 class="text-lg font-bold group-hover:text-accent2 transition-colors">Neon Lights</h4>
+                    <p class="text-sm text-gray-500 mt-1">Photography / Art</p>
+                </article>
+
+                <!-- Item 3 -->
+                <article class="col-span-12 md:col-span-3 group cursor-pointer">
+                    <div class="aspect-[4/5] bg-gray-100 mb-4 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" alt="Project 3">
+                    </div>
+                    <h4 class="text-lg font-bold group-hover:text-accent3 transition-colors">Cyber Security</h4>
+                    <p class="text-sm text-gray-500 mt-1">Tech / Development</p>
+                </article>
+
+                <!-- Item 4 -->
+                <article class="col-span-12 md:col-span-3 group cursor-pointer">
+                    <div class="aspect-[4/5] bg-gray-100 mb-4 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1492551557933-34265f7af79e?q=80&w=600&auto=format&fit=crop" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" alt="Project 4">
+                    </div>
+                    <h4 class="text-lg font-bold group-hover:text-accent1 transition-colors">Modern Workspace</h4>
+                    <p class="text-sm text-gray-500 mt-1">Interior / Culture</p>
+                </article>
+            </div>
+
+            <!-- View More Button -->
+            <div class="flex justify-center">
+                <a href="work.html" class="group relative inline-flex items-center justify-center px-8 py-3 font-bold text-main transition-all duration-300 bg-transparent border-2 border-main rounded-full hover:bg-main hover:text-white focus:outline-none">
+                    <span class="mr-2">View Full Archive</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3-COLUMN ZONE (Items span 4 cols) -->
+        <!-- Request: "3컬럼 존" -> 12 / 3 items = span 4 -->
+        <section class="mb-20">
+            <div class="flex justify-between items-baseline mb-8 border-b border-gray-200 pb-4">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                    <span class="w-3 h-3 bg-accent3 rounded-full"></span>
+                    Insights (3-Column Zone)
+                </h3>
+                <span class="text-sm text-gray-400 font-mono">Stories</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
+                <!-- Insight 1 -->
+                <div class="col-span-12 md:col-span-4 flex flex-col gap-4 group">
+                    <div class="w-full h-64 bg-gray-200 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Tech">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-accent1/10 text-accent1 text-xs font-bold rounded">TECH</span>
+                            <span class="text-xs text-gray-400">Nov 20, 2025</span>
+                        </div>
+                        <h3 class="text-2xl font-bold leading-tight group-hover:text-accent1 transition-colors">
+                            The future of grid systems in web design.
+                        </h3>
+                        <p class="text-gray-500 mt-3 text-sm line-clamp-3">
+                            How module grids change the way we perceive information hierarchy on modern devices.
+                        </p>
+                        <a href="#" class="mt-4 inline-flex items-center text-sm font-bold text-main hover:text-accent1 transition-colors">
+                            Read More <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Insight 2 -->
+                <div class="col-span-12 md:col-span-4 flex flex-col gap-4 group">
+                    <div class="w-full h-64 bg-main overflow-hidden rounded-lg relative">
+                         <div class="absolute inset-0 flex items-center justify-center">
+                            <h4 class="text-outline text-6xl opacity-30 group-hover:opacity-50 transition-opacity">CODE</h4>
+                         </div>
+                         <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent1 via-accent2 to-accent3 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-accent3/10 text-accent3 text-xs font-bold rounded">DEV</span>
+                            <span class="text-xs text-gray-400">Nov 18, 2025</span>
+                        </div>
+                        <h3 class="text-2xl font-bold leading-tight group-hover:text-accent3 transition-colors">
+                            Optimizing CSS for dark mode interfaces.
+                        </h3>
+                        <p class="text-gray-500 mt-3 text-sm line-clamp-3">
+                            Using CSS variables to manage #2f333d themes and high contrast accessibility.
+                        </p>
+                         <a href="#" class="mt-4 inline-flex items-center text-sm font-bold text-main hover:text-accent3 transition-colors">
+                            Read More <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Insight 3 -->
+                <div class="col-span-12 md:col-span-4 flex flex-col gap-4 group">
+                     <div class="w-full h-64 bg-gray-200 overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1614851099511-773084f6911d?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Design">
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-accent2/10 text-accent2 text-xs font-bold rounded">DESIGN</span>
+                            <span class="text-xs text-gray-400">Nov 15, 2025</span>
+                        </div>
+                        <h3 class="text-2xl font-bold leading-tight group-hover:text-accent2 transition-colors">
+                            Color theory: Using purple in UI.
+                        </h3>
+                        <p class="text-gray-500 mt-3 text-sm line-clamp-3">
+                            Why #E3AEFF and #9088FF work so well together in creating a futuristic vibe.
+                        </p>
+                         <a href="#" class="mt-4 inline-flex items-center text-sm font-bold text-main hover:text-accent2 transition-colors">
+                            Read More <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Insights Button -->
+            <div class="flex justify-center mt-12">
+                <a href="#" class="group relative inline-flex items-center justify-center px-8 py-3 font-bold text-main transition-all duration-300 bg-transparent border-2 border-main rounded-full hover:bg-main hover:text-white focus:outline-none">
+                    <span class="mr-2">View All Insights</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Banner -->
+        <section class="w-full bg-main rounded-2xl p-8 md:p-16 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-32 h-32 bg-accent1 blur-[80px] rounded-full opacity-50"></div>
+            <div class="absolute bottom-0 right-0 w-48 h-48 bg-accent3 blur-[100px] rounded-full opacity-50"></div>
+            
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to create?</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">Let's build something extraordinary using grid systems.</p>
+                <!-- Changed button to a tag with mailto -->
+                <a href="mailto:hello@modula.design" class="inline-block bg-white text-main hover:bg-accent2 hover:text-main transition-all duration-300 px-8 py-4 rounded-full font-bold shadow-lg transform hover:-translate-y-1">
+                    Contact Me
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-gray-200 bg-[#fcfcfc] py-12">
+        <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-bold text-main tracking-tighter">MODULA</div>
+            <div class="flex gap-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-accent1">Instagram</a>
+                <a href="#" class="hover:text-accent1">Twitter</a>
+                <a href="#" class="hover:text-accent1">LinkedIn</a>
+            </div>
+            <div class="text-xs text-gray-400">
+                &copy; 2025 Modula Grid Design. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
