@@ -1,9 +1,10 @@
-# version archive
+# Blogger Theme for [Arcaspai: Blog](https://arcaspai.blogspot.com/)
 
-## 2025-11-29: module grid(with Gemini)
-made with Gemini Pro 3 - https://gemini.google.com/share/5ec8ff03e198
-  * [v 0.11](https://github.com/arcaspai/blogger-theme/tree/main/20251129-moduleGridWithGemini-v0.11) - Gemini
-  * [v 1.0](https://github.com/arcaspai/blogger-theme/blob/main/20251129-moduleGridWithGemini-v1.0.xml) - Gemini
-  * [v 1.1](https://github.com/arcaspai/blogger-theme/blob/main/20251129-moduleGridWithGemini-v1.1.xml) - me
-  * [v 1.7](https://github.com/arcaspai/blogger-theme/blob/main/20251129-moduleGridWithGemini-v1.7.xml) - Gemini
-  * [v 1.10](https://github.com/arcaspai/blogger-theme/blob/main/20251129-moduleGridWithGemini-v1.10.xml) - me
+The blog theme file using for Blogger. Use `.XML` file please.
+
+
+
+
+
+made with Gemini3.
+- [made process](https://gemini.google.com/share/5ec8ff03e198) (Only Korean. Excuse me.)
