@@ -1113,8 +1113,8 @@
             <div class='text-2xl font-bold text-main tracking-tighter'><img alt='ARCASPAI: BLOG' class='h-10 w-auto object-contain' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/6ef67f2aabce5c4dfce705ca35199618f900da04/images/logo/arcaspai_logo_violet.svg'/></div>
             <div class='flex gap-6 text-sm text-gray-500'>
                 <a class='hover:text-accent1' href='https://arcaspai.github.io' target='_blank'>Website</a>
-                <a class='hover:text-accent1' href='https://arcaspai.github.io/universe.htm' target='_blank'>Universe</a>
-                <a class='hover:text-accent1' href='https://gemini.google.com/share/5ec8ff03e198' target='_blank'>Theme</a>
+                <a class='hover:text-accent1' href='https://arcaspai.github.io/universe.html' target='_blank'>Universe</a>
+                <a class='hover:text-accent1' href='https://github.com/arcaspai/blogger-theme' target='_blank'>Theme</a>
             </div>
             <div class='text-xs text-gray-400'>
                 ARCASPAI PROJECT &#169; 2021 - <span id='current-year'/> Redder.<br/>Powered by <a href='https://blogger.com' target='_blank'>Blogger</a>.
