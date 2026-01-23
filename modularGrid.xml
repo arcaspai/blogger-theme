@@ -20,11 +20,11 @@
             theme: {
                 extend: {
                     colors: {
-                        main: &#39;#2f333d&#39;,
-                        bg: &#39;#fcfcfc&#39;,
-                        accent1: &#39;#9088FF&#39;,
-                        accent2: &#39;#E3AEFF&#39;,
-                        accent3: &#39;#8AAEFF&#39;,
+                        main: '#2f333d',
+                        bg: '#fcfcfc',
+                        accent1: '#9088FF',
+                        accent2: '#E3AEFF',
+                        accent3: '#8AAEFF',
                     }
                 }
             }
@@ -67,6 +67,8 @@
 	.post-body a { color: #8AAEFF; }
     .post-body img { border-radius: 0.5rem; margin: 2rem 0; width: 100%; height: auto; object-fit: cover; cursor: zoom-in; transition: opacity 0.2s; }
     .post-body img:hover { opacity: 0.9; }
+	.post-body ul { list-style: square; padding-left: 2em; }
+	.post-body ol { list style: number; padding-left: 2em; }
     .post-body blockquote { border-left: 4px solid #E3AEFF; padding-left: 1.5rem; font-style: italic; color: #718096; margin: 2rem 0; }
     
     /* Toast Notification */
@@ -193,7 +195,7 @@
     <div id='scroll-progress'/>
 
     <!-- Toast Notification Element -->
-    <div id='toast-notification'>Link Copied to Clipboard! &#10024;</div>
+    <div id='toast-notification'>Link Copied to Clipboard! ✨</div>
 
     <!-- Image Lightbox Element -->
     <div id='image-lightbox'>
@@ -356,7 +358,7 @@
                                         <div expr:class='&quot;aspect-[2/1] bg-gray-100 mb-4 overflow-hidden relative rounded-sm thumbnail-container &quot; + (data:post.firstImageUrl ? &quot;&quot; : &quot;needs-image&quot;)' expr:data-id='data:post.id'>
                                             <a class='block w-full h-full' expr:href='data:post.url'>
                                                 <b:if cond='data:post.firstImageUrl'>
-                                                    <img class='object-cover w-full h-full group-hover:scale-110 transition-transform duration-500' expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/>
+                                                    <img class='object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 list-thumbnail' expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/>
                                                 <b:else/>
                                                     <div class='w-full h-full bg-main flex items-center justify-center text-white/20 placeholder-box'>
                                                         <span class='text-outline text-4xl'>NO IMG</span>
@@ -396,59 +398,61 @@
                     <!-- [VIEW 3] POST & PAGE DETAIL -->
                     <b:else/>
                         <b:loop values='data:posts' var='post'>
-                            <header class='pt-32 pb-12 md:pt-48 md:pb-20 px-6 max-w-[1400px] mx-auto'>
-                                <div class='border-b border-gray-200 pb-8 mb-8'>
-                                    <b:if cond='data:post.labels'>
-                                        <a class='text-accent1 font-bold text-sm tracking-widest uppercase mb-2 block hover:underline w-fit' expr:href='data:post.labels.first.url'>
-                                            <data:post.labels.first.name/>
-                                        </a>
+                            <article class='post-detail'>
+                                <header class='pt-32 pb-12 md:pt-48 md:pb-20 px-6 max-w-[1400px] mx-auto'>
+                                    <div class='border-b border-gray-200 pb-8 mb-8'>
+                                        <b:if cond='data:post.labels'>
+                                            <a class='text-accent1 font-bold text-sm tracking-widest uppercase mb-2 block hover:underline w-fit' expr:href='data:post.labels.first.url'>
+                                                <data:post.labels.first.name/>
+                                            </a>
+                                        </b:if>
+                                        <h1 class='text-4xl md:text-7xl font-bold text-main leading-tight break-words break-keep'>
+                                            <data:post.title/>
+                                        </h1>
+                                    </div>
+                                    <b:if cond='!data:view.isPage'>
+                                        <div class='grid grid-cols-2 md:grid-cols-4 gap-8'>
+                                            <div>
+                                                <span class='text-gray-400 text-xs font-mono block mb-1'>AUTHOR</span>
+                                                <span class='text-main font-bold'><data:post.author.name/></span>
+                                            </div>
+                                            <div>
+                                                <span class='text-gray-400 text-xs font-mono block mb-1'>DATE</span>
+                                                <span class='text-main font-bold'><data:post.date/></span>
+                                            </div>
+                                            <div>
+                                                <span class='text-gray-400 text-xs font-mono block mb-1'>LABELS</span>
+                                                <span class='text-main font-bold text-sm leading-snug block'>
+                                                    <b:if cond='data:post.labels'>
+                                                        <b:loop index='i' values='data:post.labels' var='label'>
+                                                            <a class='hover:text-accent1 transition-colors' expr:href='data:label.url'><data:label.name/></a><b:if cond='data:i &lt; data:post.labels.size - 1'>, </b:if>
+                                                        </b:loop>
+                                                    <b:else/>
+                                                        <span>-</span>
+                                                    </b:if>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span class='text-gray-400 text-xs font-mono block mb-1'>SHARE</span>
+                                                <a class='text-accent1 font-bold hover:underline' href='#' onclick='copyLinkToClipboard(); return false;'>Copy Link &#8599;</a>
+                                            </div>
+                                        </div>
                                     </b:if>
-                                    <h1 class='text-4xl md:text-7xl font-bold text-main leading-tight break-words break-keep'>
-                                        <data:post.title/>
-                                    </h1>
-                                </div>
-                                <b:if cond='!data:view.isPage'>
-                                    <div class='grid grid-cols-2 md:grid-cols-4 gap-8'>
-                                        <div>
-                                            <span class='text-gray-400 text-xs font-mono block mb-1'>AUTHOR</span>
-                                            <span class='text-main font-bold'><data:post.author.name/></span>
-                                        </div>
-                                        <div>
-                                            <span class='text-gray-400 text-xs font-mono block mb-1'>DATE</span>
-                                            <span class='text-main font-bold'><data:post.date/></span>
-                                        </div>
-                                        <div>
-                                            <span class='text-gray-400 text-xs font-mono block mb-1'>LABELS</span>
-                                            <span class='text-main font-bold text-sm leading-snug block'>
-                                                <b:if cond='data:post.labels'>
-                                                    <b:loop index='i' values='data:post.labels' var='label'>
-                                                        <a class='hover:text-accent1 transition-colors' expr:href='data:label.url'><data:label.name/></a><b:if cond='data:i &lt; data:post.labels.size - 1'>, </b:if>
-                                                    </b:loop>
-                                                <b:else/>
-                                                    <span>-</span>
-                                                </b:if>
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span class='text-gray-400 text-xs font-mono block mb-1'>SHARE</span>
-                                            <a class='text-accent1 font-bold hover:underline' href='#' onclick='copyLinkToClipboard(); return false;'>Copy Link &#8599;</a>
-                                        </div>
+                                </header>
+                                <b:if cond='data:post.firstImageUrl'>
+                                    <div class='w-full h-[60vh] md:h-[80vh] overflow-hidden bg-gray-100'>
+                                        <img alt='Main Visual' class='w-full h-full object-cover post-featured-image' expr:src='resizeImage(data:post.firstImageUrl, 1600)'/>
                                     </div>
                                 </b:if>
-                            </header>
-                            <b:if cond='data:post.firstImageUrl'>
-                                <div class='w-full h-[60vh] md:h-[80vh] overflow-hidden bg-gray-100'>
-                                    <img alt='Main Visual' class='w-full h-full object-cover' expr:src='data:post.firstImageUrl'/>
+                                <div class='max-w-[900px] mx-auto px-6 py-20 md:py-32 overflow-hidden'>
+                                    <div class='post-body text-main mb-16'>
+                                        <data:post.body/>
+                                    </div>
+                                    <div class='pt-10 border-t border-gray-200'>
+                                        <b:include data='post' name='commentPicker'/>
+                                    </div>
                                 </div>
-                            </b:if>
-                            <div class='max-w-[900px] mx-auto px-6 py-20 md:py-32 overflow-hidden'>
-                                <div class='post-body text-main mb-16'>
-                                    <data:post.body/>
-                                </div>
-                                <div class='pt-10 border-t border-gray-200'>
-                                    <b:include data='post' name='commentPicker'/>
-                                </div>
-                            </div>
+                            </article>
                         </b:loop>
                     </b:if>
                 </b:includable>
@@ -1126,8 +1130,29 @@
     <!-- Image Rescue Script -->
     <script>
         //<![CDATA[
+        function getHighResImage(src) {
+            if (!src || src.startsWith('data:')) return src;
+            // 1. 유튜브 썸네일 고화질화
+            if (src.includes('img.youtube.com')) return src.replace(/\/(default|mqdefault|hqdefault|sddefault)\.jpg/, "/maxresdefault.jpg");
+            // 2. 블로거 이미지 서버 고화질화 (s1600)
+            const bloggerResizeRegex = /\/([sw][0-9]+|w[0-9]+-h[0-9]+)(-[a-z0-9-]+)?\//;
+            if (src.includes('blogger.googleusercontent.com') || src.includes('.bp.blogspot.com')) {
+                if (bloggerResizeRegex.test(src)) return src.replace(bloggerResizeRegex, "/s1600/");
+                if (src.includes('=')) return src.replace(/=(w[0-9]+|s[0-9]+).*/, "=s1600");
+            }
+            return src;
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             lucide.createIcons();
+            
+            // 이미지 선명하게 불러오기 (본문 이미지 업그레이드)
+            document.querySelectorAll('.post-body img').forEach(img => {
+                img.src = getHighResImage(img.src);
+            });
+            const featuredImg = document.querySelector('.post-featured-image');
+            if (featuredImg) featuredImg.src = getHighResImage(featuredImg.src);
+
             const containers = document.querySelectorAll('.needs-image');
             if(containers.length > 0) {
                 containers.forEach(function(container) {
@@ -1143,12 +1168,12 @@
                     let imageUrl = null;
                     const entry = json.entry;
                     if (entry.media$thumbnail) {
-                        imageUrl = entry.media$thumbnail.url.replace(/\/s[0-9]+(-c)?\//, "/w600/");
+                        imageUrl = getHighResImage(entry.media$thumbnail.url);
                     } else if (entry.content && entry.content.$t) {
                         const div = document.createElement('div');
                         div.innerHTML = entry.content.$t;
                         const img = div.querySelector('img');
-                        if (img) imageUrl = img.src;
+                        if (img) imageUrl = getHighResImage(img.src);
                     }
                     if (imageUrl) {
                         const placeholder = container.querySelector('.placeholder-box');
@@ -1178,16 +1203,13 @@
                 searchToggle.addEventListener('click', (e) => {
                     e.preventDefault();
                     if (searchInput.classList.contains('w-0')) {
-                        // Open Search
                         searchInput.classList.remove('w-0', 'opacity-0');
                         searchInput.classList.add('w-32', 'md:w-48', 'opacity-100', 'px-2');
                         searchInput.focus();
                     } else {
-                        // If open, check content
                         if (searchInput.value.trim() !== "") {
                             searchForm.submit();
                         } else {
-                            // Close Search
                             searchInput.classList.add('w-0', 'opacity-0');
                             searchInput.classList.remove('w-32', 'md:w-48', 'opacity-100', 'px-2');
                         }
@@ -1195,65 +1217,50 @@
                 });
             }
 
-            // Image Lightbox Logic
+            // Image Lightbox Logic (고화질 적용)
             const lightbox = document.getElementById('image-lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxClose = document.getElementById('lightbox-close');
             const postImages = document.querySelectorAll('.post-body img');
 
             postImages.forEach(img => {
-                // Check if image is wrapped in a link
                 const parentLink = img.closest('a');
-                
-                // Add click event
                 img.addEventListener('click', (e) => {
-                    e.preventDefault(); // Stop link navigation
+                    e.preventDefault();
                     e.stopPropagation();
                     
-                    // Get high-res URL
-                    let highResUrl = img.src;
+                    let highResUrl = getHighResImage(img.src);
                     if (parentLink && /\.(jpg|jpeg|png|gif|webp)$/i.test(parentLink.href)) {
                         highResUrl = parentLink.href;
                     } else if (parentLink && parentLink.href.includes('blogger.googleusercontent.com/img')) {
                          highResUrl = parentLink.href;
-                    } else {
-                        // Try to get high-res from src if it looks like a blogger image
-                        // Typically replace /sXXX/ or /wXXX/ with /s1600/ or similar for max res, 
-                        // but let's just use the src or parent href for safety.
                     }
 
                     lightboxImg.src = highResUrl;
                     lightbox.classList.add('active');
                 });
 
-                // Also handle the parent link click to be safe
                 if (parentLink) {
                     parentLink.addEventListener('click', (e) => {
                         e.preventDefault();
-                        // Trigger image click logic
-                        // img.click() might loop, so we rely on the img listener above
-                        // Just preventing default here is enough as the img is inside
                     });
                 }
             });
 
-            // Close Lightbox
-            lightboxClose.addEventListener('click', () => {
+            lightboxClose?.addEventListener('click', () => {
                 lightbox.classList.remove('active');
-                setTimeout(() => lightboxImg.src = '', 300); // Clear src after fade out
+                setTimeout(() => lightboxImg.src = '', 300);
             });
 
-            // Close on background click
-            lightbox.addEventListener('click', (e) => {
+            lightbox?.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
                     lightbox.classList.remove('active');
                     setTimeout(() => lightboxImg.src = '', 300);
                 }
             });
             
-            // Close on Esc key
             document.addEventListener('keydown', (e) => {
-                if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                if (e.key === "Escape" && lightbox?.classList.contains('active')) {
                     lightbox.classList.remove('active');
                     setTimeout(() => lightboxImg.src = '', 300);
                 }
@@ -1263,13 +1270,10 @@
             const easterEggBtn = document.getElementById('easter-egg-btn');
             if (easterEggBtn) {
                 easterEggBtn.addEventListener('click', () => {
-                    // 1. Spin Icon
                     const icon = easterEggBtn.querySelector('i, svg');
                     if(icon) {
                         icon.style.transform = icon.style.transform === 'rotate(360deg)' ? 'rotate(0deg)' : 'rotate(360deg)';
                     }
-
-                    // 2. Random Toast Message
                     const messages = [
                         "이스터에그입니다. 반갑습니다!",
                         "오늘도 좋은 하루 보내세요!",
@@ -1283,27 +1287,39 @@
                         "블로그 폰트는 SUITE입니다."
                     ];
                     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-                    
                     const toast = document.getElementById('toast-notification');
-                    toast.innerText = randomMsg;
-                    toast.classList.add('show');
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 3000);
+                    if(toast) {
+                        toast.innerText = randomMsg;
+                        toast.classList.add('show');
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                        }, 3000);
+                    }
                 });
             }
         });
 
-        // [NEW] Copy RSS Link to Clipboard
         function copyRSSToClipboard() {
             const rssUrl = window.location.origin + "/feeds/posts/default";
             navigator.clipboard.writeText(rssUrl).then(() => {
                 const toast = document.getElementById('toast-notification');
-                toast.innerText = "RSS 주소가 복사되었습니다!";
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
+                if(toast) {
+                    toast.innerText = "RSS 주소가 복사되었습니다!";
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }
+            });
+        }
+        function copyLinkToClipboard() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const toast = document.getElementById('toast-notification');
+                if(toast) {
+                    toast.innerText = "링크가 복사되었습니다!";
+                    toast.classList.add('show');
+                    setTimeout(() => { toast.classList.remove('show'); }, 3000);
+                }
             });
         }
         //]]>
