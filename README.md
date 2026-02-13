@@ -7,7 +7,6 @@ This theme was created specifically for my blog, so please feel free to modify s
 ## Who are make?
 
 made with Gemini3.
-- [made process](https://gemini.google.com/share/5ec8ff03e198) (Only Korean. Excuse me.)
 
 ## Credits
 
