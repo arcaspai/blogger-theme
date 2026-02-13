@@ -12,6 +12,9 @@
     
     <!-- Fonts -->
   	<link href='https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/static/woff2/SUITE.css' rel='stylesheet'/>
+  	<link href='https://font.elice.io/css?family=Elice+Digital+Baeum' rel='stylesheet'/>
+  	<link href='https://font.elice.io/css?family=Elice+Digital+Coding' rel='stylesheet'/>
+  	<link href='https://github.com/xem/emoji/blob/gh-pages/twemoji.woff' rel='stylesheet'/>
     <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;display=swap' rel='stylesheet'/>
 
     <!-- Custom Tailwind Configuration -->
@@ -35,7 +38,7 @@
     body {
         background-color: #fcfcfc;
         color: #2f333d;
-        font-family: 'SUITE', 'Inter', sans-serif;
+        font-family: 'SUITE', 'Inter', 'Twemoji Mozilla', sans-serif;
     }
 
     /* Outline Text Style */
@@ -64,12 +67,13 @@
     .post-body h2::before { content: ''; display: block; width: 0.5rem; height: 2rem; background-color: #9088FF; }
     .post-body h3 { font-size: 1.5rem; font-weight: 700; color: #2f333d; margin-top: 2rem; margin-bottom: 1rem; }
     .post-body p { margin-bottom: 1.5rem; word-break: keep-all; }
-	.post-body a { color: #8AAEFF; }
-    .post-body img { border-radius: 0.5rem; margin: 2rem 0; width: 100%; height: auto; object-fit: cover; cursor: zoom-in; transition: opacity 0.2s; }
+	  .post-body a { color: #8AAEFF; }
+    .post-body img { border-radius: 0.5rem; margin: 2rem 0; height: auto; object-fit: cover; cursor: zoom-in; transition: opacity 0.2s; }
     .post-body img:hover { opacity: 0.9; }
-	.post-body ul { list-style: square; padding-left: 2em; }
-	.post-body ol { list style: number; padding-left: 2em; }
-    .post-body blockquote { border-left: 4px solid #E3AEFF; padding-left: 1.5rem; font-style: italic; color: #718096; margin: 2rem 0; }
+	  .post-body ul { list-style: square; padding-left: 2em; }
+	  .post-body ol { list style: number; padding-left: 2em; }
+    .post-body blockquote { border-left: 4px solid #E3AEFF; padding-left: 1.5rem; margin: 2rem 0; }
+    .post-body pre, .post-body code, .post-body samp, .post-body kbd, .post-body var { font-family: 'Elice Digital Codling', 'Elice Digital Baeum', monospace; }
     
     /* Toast Notification */
     #toast-notification {
