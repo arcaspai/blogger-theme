@@ -6,9 +6,13 @@ This theme was created specifically for my blog, so please feel free to modify s
 
 ## Who are make?
 
-made with Gemini3.
+made with Antigravity.
 
 ## Credits
+
+### Design Referance
+
+- Arcaspai website (https://github.com/arcaspai/arcaspai.github.io)
 
 ### Fonts
 
