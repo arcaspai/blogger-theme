@@ -622,18 +622,17 @@
     <!-- ===== NAVIGATION ===== -->
     <nav>
         <div class='nav-logo'>
-            <a href='https://arcaspai.github.io/'><img alt='Arcaspai' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_gradient1.svg' width='120'/></a>
+            <a expr:href='data:blog.homepageUrl'><img alt='Arcaspai' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_gradient1.svg' width='120'/></a>
         </div>
 
         <details>
             <summary alt='menu'/>
             <ul>
-                <li><a href='https://arcaspai.github.io/'>홈</a></li>
-                <li><a href='https://arcaspai.github.io/about.html'>소개</a></li>
-                <li><a href='https://arcaspai.github.io/works.html'>작품</a></li>
-                <li><a href='https://arcaspai.github.io/guideline.html'>가이드라인</a></li>
+                <li><a expr:href='data:blog.homepageUrl'>블로그</a></li>
+                <li><a href='https://arcaspai.blogspot.com/search'>글 전체보기</a></li>
+                <li></li>
+                <li><a href='https://arcaspai.github.io/' target='_blank'>메인 페이지</a></li>
                 <li><a href='https://arcaspai.github.io/universe.html' target='_blank'>설정집</a></li>
-                <li><a class='selected' expr:href='data:blog.homepageUrl'>블로그</a></li>
                 <li><a href='https://youtube.com/@arcaspai/' target='_blank'>유튜브</a></li>
                 <li><a href='https://arcaspai.itch.io/' target='_blank'>ITCH.IO</a></li>
                 <li><a href='https://arcaspai.github.io/discord.html' target='_blank'>디스코드</a></li>
@@ -647,7 +646,7 @@
             <div class='dim'/>
             <div class='index-logo'>
                 <img alt='Arcaspai: Archived Space' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_white.svg'/>
-                <p>공상에서 이상으로의 여정</p>
+                <p>아르카스페이 블로그</p>
             </div>
         </header>
     <b:else/>
