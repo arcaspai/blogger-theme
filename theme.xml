@@ -17,11 +17,8 @@
     <link href='https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap' rel='stylesheet'/>
     <link href='https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&amp;display=swap' rel='stylesheet'/>
 
-    <!-- Lucide Icons -->
-    <script src='https://unpkg.com/lucide@latest'/>
-
     <b:skin><![CDATA[
-    /* ===== GLOBAL RESET ===== */
+    /* ===== GLOBAL (from arcaspai.github.io style.css) ===== */
     * {
         margin: 0;
         padding: 0;
@@ -33,17 +30,41 @@
         background-color: #fcfcfc;
         color: #2f333d;
         line-height: 1.6;
-        overflow-x: hidden;
+    }
+
+    main {
+        max-width: 884px;
+        margin: 0 auto;
+        padding: 0 12px;
+        min-height: 60vh;
+    }
+
+    h1 {
+        padding-top: 48px;
+    }
+
+    h2, h3 {
+        padding-top: 24px;
+    }
+
+    h4, h5, h6 {
+        padding-top: 16px;
+    }
+
+    main p {
+        padding-top: 16px;
+    }
+
+    section {
+        padding: 20px 28px 0 28px;
     }
 
     a {
         color: #8aaeff;
         text-decoration: none;
-        transition: color 0.2s;
     }
     a:hover {
-        text-decoration: none !important;
-        color: #9088ff;
+        text-decoration: none;
     }
 
     q, blockquote {
@@ -63,47 +84,35 @@
         height: auto;
     }
 
-    /* ===== SCROLLBAR ===== */
-    ::-webkit-scrollbar {
-        width: 4px;
-        height: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #9088ff;
-        border-radius: 2px;
-    }
-    ::-webkit-scrollbar-track {
-        background-color: #f2f2f2;
-    }
-
-    /* ===== SCROLL PROGRESS BAR ===== */
-    #scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #9088FF, #E3AEFF, #8AAEFF);
-        z-index: 10000;
-        transition: width 0.1s;
-    }
-
-    /* ===== NAVIGATION ===== */
-    nav.arcaspai-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
+    .dim {
         width: 100%;
-        z-index: 999;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0;
-        pointer-events: none;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.75;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
-    .nav-logo {
-        pointer-events: auto;
+    .galmuri {
+        font-family: "Galmuri7", "GalmuriMono7", "Noto Sans", "Twemoji Mozilla", "Noto Emoji", Arial, Helvetica, sans-serif;
+    }
+
+    .elice {
+        font-family: "Elice Degital Baeum", "Noto Sans", "Twemoji Mozilla", "Noto Emoji", Arial, Helvetica, sans-serif;
+    }
+
+    /* ===== NAV ===== */
+    @media (orientation: portrait) {
+        nav {
+            width: 99vw;
+        }
+    }
+
+    @media (orientation: landscape) {
+        nav {
+            width: 100vw;
+        }
     }
 
     .nav-logo img {
@@ -111,24 +120,19 @@
         top: 20px;
         left: 20px;
         z-index: 999;
-        transition: opacity 0.2s;
-    }
-    .nav-logo img:hover {
-        opacity: 0.8;
     }
 
-    nav.arcaspai-nav details {
+    nav details {
         position: fixed;
         top: 0;
         right: 0;
         z-index: 999;
-        pointer-events: auto;
     }
 
-    nav.arcaspai-nav details[open] {
+    nav details[open] {
         position: fixed;
         height: 100vh;
-        width: 240px;
+        width: 200px;
         top: 0;
         right: 0;
         z-index: 999;
@@ -136,7 +140,7 @@
         overflow-y: auto;
     }
 
-    nav.arcaspai-nav details summary {
+    nav details summary {
         list-style: none;
         width: 160px;
         height: 24px;
@@ -146,105 +150,61 @@
         background-repeat: no-repeat;
         background-position: right;
     }
-    nav.arcaspai-nav details summary::-webkit-details-marker {
+    nav details summary::-webkit-details-marker {
         display: none;
     }
 
-    nav.arcaspai-nav details[open] summary {
+    nav details[open] summary {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%232f333d'%3E%3Cpath d='M120-120v-80h720v80H120Zm0-320v-80h720v80H120Zm0-320v-80h720v80H120Z'/%3E%3C/svg%3E");
     }
 
-    nav.arcaspai-nav li {
+    nav li {
         list-style: none;
         padding-top: 20px;
         padding-left: 28px;
     }
 
-    nav.arcaspai-nav a {
+    nav a {
         color: #f2f2f2;
-        font-size: 0.95rem;
     }
-    nav.arcaspai-nav a:hover {
+    nav a:hover {
         color: #ffffff;
     }
 
-    nav.arcaspai-nav .selected {
+    nav .selected {
         font-weight: 700;
         border-bottom: 2px dotted #f2f2f2;
     }
 
     /* ===== HEADER ===== */
-    .blog-header {
+    header {
         height: 240px;
         background-color: #2f333d;
         background-size: cover;
         background-position: center;
-        position: relative;
-        overflow: hidden;
     }
 
-    .blog-header .dim {
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        opacity: 0.4;
-        position: absolute;
-        top: 0;
-        left: 0;
+    .default-header {
+        background-image: url("https://arcaspai.github.io/images/decoration/banner-index.png");
     }
 
-    .blog-header .header-content {
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 0 20px;
-    }
-
-    .blog-header .header-content h1 {
-        font-size: 2rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-    }
-
-    .blog-header .header-content p {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        margin-top: 8px;
-    }
-
-    /* Index / Homepage Hero */
     .index-header {
         height: 100vh;
-        max-height: 900px;
-        background-color: #2f333d;
         background-image: url("https://arcaspai.github.io/images/decoration/banner-index.png");
-        background-size: cover;
         background-position: right;
         background-attachment: fixed;
         position: relative;
-        overflow: hidden;
     }
 
-    .index-header .dim {
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        opacity: 0.6;
-        position: absolute;
-        top: 0;
-        left: 0;
+    .index-header p {
+        text-align: center;
+        color: #f2f2f2;
     }
 
     .index-logo {
         width: 95%;
         max-width: 480px;
-        height: 100%;
+        height: 100vh;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -254,102 +214,107 @@
         z-index: 1;
     }
 
-    .index-logo img {
+    /* ===== FOOTER ===== */
+    footer {
         width: 100%;
-        max-width: 400px;
-    }
-
-    .index-logo p {
-        text-align: center;
-        color: #f2f2f2;
-        margin-top: 16px;
-        font-size: 1rem;
-    }
-
-    /* ===== MAIN CONTENT ===== */
-    main.arcaspai-main {
-        max-width: 884px;
         margin: 0 auto;
-        padding: 0 16px;
-        min-height: 60vh;
+        padding: 24px 0;
+        bottom: 0;
+        color: #707686;
+        text-align: center;
+        font-size: 8pt;
     }
 
-    main.arcaspai-main h1 {
-        padding-top: 48px;
-        font-size: 2rem;
-        font-weight: 800;
-        color: #2f333d;
+    footer p {
+        padding-top: 4px;
     }
 
-    main.arcaspai-main h2 {
-        padding-top: 24px;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #2f333d;
+    footer a {
+        color: #707686;
+    }
+    footer a:hover {
+        color: #9088ff;
     }
 
-    main.arcaspai-main h3 {
-        padding-top: 24px;
-        font-size: 1.25rem;
-        font-weight: 700;
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
     }
 
-    main.arcaspai-main h4,
-    main.arcaspai-main h5,
-    main.arcaspai-main h6 {
-        padding-top: 16px;
+    ::-webkit-scrollbar-thumb {
+        background-color: #9088ff;
     }
 
-    main.arcaspai-main > p,
-    main.arcaspai-main .post-intro > p {
-        padding-top: 16px;
-        line-height: 1.8;
+    ::-webkit-scrollbar-track {
+        background-color: #f2f2f2;
     }
 
-    /* ===== POST LIST (Homepage) ===== */
+    ::-webkit-scrollbar-button {
+        box-decoration-break: none;
+    }
+
+    /* ===== ETC (404) ===== */
+    .error, .redirections {
+        height: 90vh;
+        text-align: center;
+        align-content: center;
+    }
+
+    /* ===== UI SYSTEM - BUTTONS ===== */
+    /* Based on arcaspai.github.io .about-button: border-radius: 4px; background: #9088ff; color: #f2f2f2; */
+    .btn,
+    .pager a,
+    .about-button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #9088ff;
+        color: #f2f2f2;
+        padding: 8px 24px;
+        font-size: 0.9rem;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.2s;
+    }
+    .btn:hover,
+    .pager a:hover,
+    .about-button:hover {
+        background-color: #7d74f2;
+        color: #ffffff;
+    }
+
+    .about-button p {
+        padding: 8px;
+        color: #f2f2f2;
+    }
+
+    /* ===== POST LIST ===== */
     .post-list-header {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
+        margin-top: 32px;
         margin-bottom: 24px;
-        border-bottom: 1px solid #e5e5e5;
-        padding-bottom: 16px;
-        margin-top: 48px;
     }
 
     .post-list-header h2 {
-        font-size: 1.25rem;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        gap: 8px;
         padding-top: 0;
-    }
-
-    .post-list-header h2::before {
-        content: '';
-        display: block;
-        width: 12px;
-        height: 12px;
-        background-color: #9088ff;
-        border-radius: 50%;
-        flex-shrink: 0;
+        font-size: 1.5rem;
     }
 
     .post-list-header a {
         font-size: 0.85rem;
-        color: #a8adb9;
-        font-family: "Elice Digital Coding", monospace;
+        color: #707686;
     }
     .post-list-header a:hover {
         color: #9088ff;
     }
 
-    /* Post Cards Grid */
     .post-cards {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 24px;
         margin-bottom: 48px;
     }
     @media (min-width: 768px) {
@@ -364,11 +329,11 @@
     }
 
     .post-card .thumb-wrap {
-        aspect-ratio: 2 / 1;
-        background-color: #f0f0f0;
+        aspect-ratio: 16 / 9;
+        background-color: #f2f2f2;
         margin-bottom: 12px;
         overflow: hidden;
-        border-radius: 4px;
+        border-radius: 6px;
         position: relative;
     }
 
@@ -376,10 +341,11 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s;
+        display: block;
+        transition: opacity 0.2s;
     }
-    .post-card:hover .thumb-wrap img {
-        transform: scale(1.08);
+    .post-card .thumb-wrap img:hover {
+        opacity: 0.9;
     }
 
     .post-card .thumb-wrap .no-img {
@@ -389,9 +355,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: rgba(255,255,255,0.15);
-        font-size: 1.5rem;
-        font-weight: 900;
+        color: #707686;
+        font-size: 0.85rem;
+        font-weight: 700;
         letter-spacing: 0.05em;
     }
 
@@ -399,57 +365,55 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
 
     .post-card .card-label {
         display: inline-block;
         padding: 2px 8px;
-        background-color: rgba(144, 136, 255, 0.1);
+        background-color: rgba(144, 136, 255, 0.15);
         color: #9088ff;
         font-size: 0.75rem;
         font-weight: 700;
-        border-radius: 3px;
-        transition: all 0.2s;
+        border-radius: 4px;
     }
     .post-card .card-label:hover {
         background-color: #9088ff;
-        color: #fff;
+        color: #f2f2f2;
     }
 
     .post-card .card-date {
         font-size: 0.75rem;
-        color: #a8adb9;
+        color: #707686;
     }
 
     .post-card .card-title {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         font-weight: 700;
         line-height: 1.4;
-        margin-bottom: 6px;
-        color: #2f333d;
-        transition: color 0.2s;
         padding-top: 0;
-    }
-    .post-card:hover .card-title,
-    .post-card .card-title a:hover {
-        color: #9088ff;
+        margin-bottom: 4px;
     }
     .post-card .card-title a {
-        color: inherit;
+        color: #2f333d;
+        transition: color 0.2s;
+    }
+    .post-card .card-title a:hover {
+        color: #9088ff;
     }
 
     .post-card .card-snippet {
         font-size: 0.85rem;
         color: #707686;
         line-height: 1.5;
+        padding-top: 0;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
 
-    /* Pagination */
+    /* ===== PAGER ===== */
     .pager {
         display: flex;
         justify-content: center;
@@ -457,663 +421,214 @@
         margin: 40px 0;
     }
 
-    .pager a {
-        display: inline-block;
-        padding: 8px 24px;
-        border: 2px solid #2f333d;
-        border-radius: 999px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #2f333d;
-        transition: all 0.2s;
-    }
-    .pager a:hover {
-        background-color: #2f333d;
-        color: #fff;
-    }
-
     /* ===== POST DETAIL ===== */
-    .post-detail-header {
-        padding: 100px 16px 40px;
-        max-width: 884px;
-        margin: 0 auto;
-    }
-
-    .post-detail-header .post-label-top {
-        display: inline-block;
-        color: #9088ff;
-        font-weight: 700;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 8px;
-    }
-    .post-detail-header .post-label-top:hover {
-        text-decoration: underline;
-    }
-
-    .post-detail-header h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #2f333d;
-        line-height: 1.3;
+    .post-detail h1 {
+        padding-top: 32px;
         word-break: keep-all;
-        padding-top: 0;
-        border-bottom: 3px solid #E3AEFF;
-        padding-bottom: 16px;
+    }
+
+    .post-meta {
+        color: #707686;
+        font-size: 0.85rem;
+        padding-top: 8px;
         margin-bottom: 24px;
     }
-    @media (min-width: 768px) {
-        .post-detail-header h1 {
-            font-size: 3.5rem;
-        }
-    }
-
-    .post-meta-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-    }
-    @media (min-width: 768px) {
-        .post-meta-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
-    .post-meta-grid .meta-label {
-        display: block;
-        font-size: 0.7rem;
-        color: #a8adb9;
-        font-family: "Elice Digital Coding", monospace;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-    }
-
-    .post-meta-grid .meta-value {
-        font-weight: 700;
-        font-size: 0.9rem;
-        color: #2f333d;
-    }
-    .post-meta-grid .meta-value a {
+    .post-meta a {
         color: #9088ff;
-        font-weight: 700;
-    }
-
-    /* Featured Image */
-    .post-featured-wrap {
-        width: 100%;
-        max-height: 70vh;
-        overflow: hidden;
-        background-color: #f0f0f0;
-        margin-bottom: 0;
-    }
-
-    .post-featured-wrap img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        max-height: 70vh;
-    }
-
-    /* Post Body */
-    .post-body-wrap {
-        max-width: 884px;
-        margin: 0 auto;
-        padding: 48px 16px 64px;
     }
 
     .post-body {
         font-size: 1.05rem;
-        line-height: 1.9;
-        color: #2f333d;
-    }
-
-    .post-body h1 {
-        font-size: 2rem;
-        font-weight: 900;
-        color: #2f333d;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-        border-bottom: 3px solid #E3AEFF;
-        padding-bottom: 0.5rem;
-        padding-top: 0;
-    }
-
-    .post-body h2 {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: #2f333d;
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding-top: 0;
-    }
-    .post-body h2::before {
-        content: '';
-        display: block;
-        width: 0.4rem;
-        height: 1.8rem;
-        background-color: #9088FF;
-        flex-shrink: 0;
-    }
-
-    .post-body h3 {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #2f333d;
-        margin-top: 2rem;
-        margin-bottom: 0.75rem;
-        padding-top: 0;
+        line-height: 1.8;
     }
 
     .post-body p {
-        margin-bottom: 1.5rem;
+        padding-top: 16px;
         word-break: keep-all;
-        padding-top: 0;
-    }
-
-    .post-body a {
-        color: #8AAEFF;
-    }
-    .post-body a:hover {
-        color: #9088ff;
-        text-decoration: underline;
     }
 
     .post-body img {
-        border-radius: 6px;
-        margin: 1.5rem 0;
-        height: auto;
-        object-fit: cover;
-        cursor: zoom-in;
-        transition: opacity 0.2s;
-    }
-    .post-body img:hover {
-        opacity: 0.9;
+        margin: 20px 0;
+        border-radius: 4px;
     }
 
     .post-body ul {
         list-style: square;
         padding-left: 2em;
-        margin-bottom: 1.5rem;
+        margin-top: 16px;
     }
 
     .post-body ol {
         list-style: decimal;
         padding-left: 2em;
-        margin-bottom: 1.5rem;
+        margin-top: 16px;
     }
 
     .post-body li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 6px;
     }
 
     .post-body blockquote {
-        border-left: 4px solid #E3AEFF;
-        padding-left: 1.5rem;
-        margin: 2rem 0;
-        color: #555;
-        font-style: italic;
-    }
-
-    .post-body pre,
-    .post-body code,
-    .post-body samp,
-    .post-body kbd,
-    .post-body var {
-        font-family: "Elice Digital Coding", "Elice Digital Baeum", monospace;
+        margin: 20px 0;
+        padding-left: 16px;
+        border-left: 4px solid #474c5a;
     }
 
     .post-body pre {
         background-color: #2f333d;
         color: #f2f2f2;
-        padding: 1.5rem;
-        border-radius: 6px;
+        padding: 16px;
+        border-radius: 4px;
         overflow-x: auto;
-        margin: 1.5rem 0;
+        margin: 16px 0;
     }
-
     .post-body pre code {
         background: none;
         padding: 0;
         color: inherit;
     }
 
-    .post-body table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1.5rem 0;
-    }
-    .post-body table th,
-    .post-body table td {
-        border: 1px solid #e5e5e5;
-        padding: 10px 14px;
-        text-align: left;
-    }
-    .post-body table th {
-        background-color: #f8f8f8;
-        font-weight: 700;
-    }
-
-    /* ===== COLOR CARDS ===== */
-    .color-card-arrange {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 16px auto;
-    }
-
-    .color-card-arrange a {
-        color: #2f333d;
-        flex: 1;
-        min-width: 140px;
-    }
-
-    .color-card {
-        padding: 16px;
-        border-radius: 6px;
-        text-align: center;
-        min-height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .color-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-
-    .color-card p {
-        font-family: "Elice Digital Baeum", "Noto Sans", sans-serif;
-        font-weight: 500;
-        padding-top: 0;
-    }
-
-    .color-card strong {
-        font-weight: 800;
-        letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 767px) {
-        .color-card-arrange {
-            flex-direction: column;
-        }
-        .color-card-arrange a {
-            min-width: 100%;
-        }
-        .color-card {
-            min-height: 72px;
-        }
-    }
-
-    /* ===== 404 ERROR ===== */
-    .error-page {
-        height: 70vh;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .error-page h1 {
-        font-size: 6rem;
-        font-weight: 900;
-        color: #9088ff;
-        margin-bottom: 16px;
-        padding-top: 0;
-    }
-
-    .error-page p {
-        color: #707686;
-        margin-bottom: 32px;
-        padding-top: 0;
-    }
-
-    .error-page a.go-home {
-        display: inline-block;
-        padding: 12px 32px;
-        background-color: #2f333d;
-        color: #fff;
-        border-radius: 999px;
-        font-weight: 700;
-        transition: background-color 0.2s;
-    }
-    .error-page a.go-home:hover {
-        background-color: #9088ff;
-    }
-
-    /* ===== FOOTER ===== */
-    footer.arcaspai-footer {
-        width: 100%;
-        margin: 0 auto;
-        padding: 32px 16px;
-        border-top: 1px solid #e5e5e5;
-        color: #707686;
-        text-align: center;
-        font-size: 0.7rem;
-    }
-
-    footer.arcaspai-footer .footer-inner {
-        max-width: 884px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
-
-    footer.arcaspai-footer .footer-links {
-        display: flex;
-        gap: 16px;
-        font-size: 0.8rem;
-    }
-
-    footer.arcaspai-footer a {
-        color: #707686;
-        transition: color 0.2s;
-    }
-    footer.arcaspai-footer a:hover {
-        color: #9088ff;
-    }
-
-    footer.arcaspai-footer .footer-logo img {
-        height: 28px;
-        width: auto;
-        opacity: 0.6;
-    }
-
-    /* ===== TOAST NOTIFICATION ===== */
-    #toast-notification {
-        visibility: hidden;
-        min-width: 250px;
-        background-color: #2f333d;
-        color: #fff;
-        text-align: center;
-        border-radius: 50px;
-        padding: 12px 24px;
-        position: fixed;
-        z-index: 100;
-        left: 50%;
-        bottom: 30px;
-        font-size: 14px;
-        font-weight: 600;
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 0.3s, bottom 0.3s;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    #toast-notification.show {
-        visibility: visible;
-        opacity: 1;
-        bottom: 50px;
-    }
-
-    /* ===== IMAGE LIGHTBOX ===== */
-    #image-lightbox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(47, 51, 61, 0.95);
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
-        padding: 2rem;
-        cursor: zoom-out;
-    }
-    #image-lightbox.active {
-        opacity: 1;
-        visibility: visible;
-    }
-    #image-lightbox img {
-        max-width: 100%;
-        max-height: 90vh;
-        object-fit: contain;
-        border-radius: 6px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        transform: scale(0.95);
-        transition: transform 0.3s;
-    }
-    #image-lightbox.active img {
-        transform: scale(1);
-    }
-    #lightbox-close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        color: white;
-        cursor: pointer;
-        padding: 10px;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
     /* ===== COMMENTS ===== */
     .comments-section {
-        border-top: 1px solid #e5e5e5;
-        padding-top: 32px;
         margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid #e5e5e5;
     }
 
     #comments h3 {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: #2f333d;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
         padding-top: 0;
-    }
-    #comments h3::before {
-        content: '';
-        display: block;
-        width: 8px;
-        height: 8px;
-        background: #9088FF;
-        border-radius: 50%;
+        margin-bottom: 24px;
     }
 
     .comment {
-        margin-bottom: 2rem !important;
+        margin-bottom: 24px !important;
     }
     .comment-block {
-        margin-left: 1rem;
+        margin-left: 16px;
     }
     .comment-header {
         display: flex;
         align-items: baseline;
-        flex-wrap: wrap;
         gap: 8px;
         margin-bottom: 4px;
     }
     .comment-author {
-        font-weight: 800 !important;
-        font-size: 1rem;
+        font-weight: 700;
         color: #2f333d;
-        font-style: normal !important;
     }
     .comment-author a {
-        text-decoration: none !important;
-        color: inherit !important;
-        font-style: normal !important;
-    }
-    .comment-author i,
-    .comment-author cite {
-        font-style: normal !important;
+        color: inherit;
     }
     .comment-timestamp {
         font-size: 0.75rem;
-        color: #a8adb9;
-    }
-    .comment-timestamp a {
-        color: inherit !important;
-        text-decoration: none !important;
+        color: #707686;
     }
     .comment-body {
-        color: #4b5563;
+        color: #2f333d;
         font-size: 0.95rem;
         line-height: 1.6;
-        margin-bottom: 0.75rem;
+        margin-bottom: 8px;
     }
     .avatar-image-container img {
         border-radius: 50% !important;
-        width: 40px !important;
-        height: 40px !important;
-        border: 2px solid #f3f4f6;
+        width: 36px !important;
+        height: 36px !important;
     }
 
     .comment-actions a,
     .comment-reply-link {
         display: inline-block;
         font-size: 0.75rem !important;
-        font-weight: 700 !important;
-        text-transform: uppercase;
-        color: #9088FF !important;
-        border: 1px solid #9088FF;
+        font-weight: 500 !important;
+        color: #f2f2f2 !important;
+        background-color: #9088ff;
         padding: 4px 12px;
-        border-radius: 999px;
-        text-decoration: none !important;
-        margin-right: 8px;
-        transition: all 0.2s;
+        border-radius: 4px;
+        transition: background-color 0.2s;
     }
     .comment-actions a:hover,
     .comment-reply-link:hover {
-        background-color: #9088FF;
-        color: white !important;
+        background-color: #7d74f2;
+    }
+
+    /* ===== COLOR CARDS (from arcaspai.github.io style.css) ===== */
+    @media screen and (orientation: portrait) {
+        .color-card-arrange {
+            display: block;
+        }
+        .color-card, .color-card-arrange a {
+            width: inherit;
+            height: 96px;
+            margin: 0 auto;
+            margin-top: 8px;
+            padding-left: 16px;
+            padding-bottom: 4px;
+            border-radius: 6px;
+            text-align: left;
+            align-content: center;
+            box-sizing: border-box;
+        }
+    }
+
+    @media screen and (orientation: landscape) {
+        .color-card-arrange {
+            display: flex;
+        }
+        .color-card, .color-card-arrange a {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            margin-top: 8px;
+            padding: 16px;
+            padding-right: 24px;
+            border-radius: 6px;
+            text-align: center;
+            align-content: center;
+            box-sizing: border-box;
+        }
+    }
+
+    .color-card-arrange {
+        margin: 16px auto;
+    }
+    .color-card-arrange a {
+        color: #2f333d;
+    }
+    .color-card h4 {
+        padding-top: 4px;
+        padding-left: 6px;
+        font-family: "Elice Digital Baeum", "Noto Sans", sans-serif;
+        font-weight: 700;
+    }
+    .color-card p {
+        padding-top: 4px;
+        padding-left: 6px;
+        padding-right: 0.7ex;
+        font-family: "Elice Digital Baeum", "Noto Sans", sans-serif;
+        font-weight: 500;
+    }
+    .color-card strong {
+        padding-left: 0.5ex;
     }
 
     /* ===== WIDGET RESETS ===== */
     .widget { margin: 0; }
     .section { margin: 0; padding: 0; }
-
-    /* ===== ABOUT SECTION ===== */
-    .about-title {
-        margin: 0.5em 0;
-        padding-left: 0.5em;
-        border-left: 4px solid #474c5a;
-    }
-
-    .profile {
-        padding: 48px 0;
-        display: flex;
-        gap: 36px;
-        align-items: flex-start;
-    }
-    @media (max-width: 767px) {
-        .profile {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-    }
-
-    .pfp {
-        width: 200px;
-        height: 200px;
-        background-color: #2f333d;
-        background-image: url("https://arcaspai.github.io/images/decoration/redder-portrait.png");
-        background-size: 360px;
-        background-position: top;
-        background-repeat: no-repeat;
-        border: 2px solid #e3aeff;
-        border-radius: 999px;
-        flex-shrink: 0;
-    }
-
-    .profile ul {
-        list-style: none;
-        font-weight: 700;
-    }
-    .profile ul li {
-        padding-top: 12px;
-    }
-    .profile ul li ul {
-        font-weight: 400;
-    }
-    .profile ul li ul li {
-        padding-left: 32px;
-    }
-
-    /* ===== GALMURI / ELICE CLASSES ===== */
-    .galmuri {
-        font-family: "Galmuri7", "GalmuriMono7", "Noto Sans", sans-serif;
-    }
-    .elice {
-        font-family: "Elice Digital Baeum", "Noto Sans", sans-serif;
-    }
-
-    /* ===== ABOUT BUTTON ===== */
-    .about-button {
-        width: 240px;
-        margin: 20px auto 0 auto;
-        border-radius: 4px;
-        background-color: #9088ff;
-        text-align: center;
-        transition: background-color 0.2s;
-    }
-    .about-button:hover {
-        background-color: #7d74f2;
-    }
-    .about-button a {
-        display: block;
-        padding: 10px;
-        color: #f2f2f2;
-    }
-
-    /* ===== GUIDELINE ===== */
-    .guideline-list {
-        padding: 1em 2em;
-    }
-    .guideline-list li {
-        margin-bottom: 0.75rem;
-        line-height: 1.7;
-    }
-
-    /* ===== SELECTION ===== */
-    ::selection {
-        background-color: #E3AEFF;
-        color: #2f333d;
-    }
     ]]></b:skin>
 </head>
 
 <body>
 
-    <!-- Scroll Progress Bar -->
-    <div id='scroll-progress'/>
-
-    <!-- Toast Notification -->
-    <div id='toast-notification'>Link Copied! ✨</div>
-
-    <!-- Image Lightbox -->
-    <div id='image-lightbox'>
-        <div id='lightbox-close'>✕</div>
-        <img alt='Full size' id='lightbox-img' src=''/>
-    </div>
-
     <!-- ===== NAVIGATION ===== -->
-    <nav class='arcaspai-nav'>
+    <nav>
         <div class='nav-logo'>
-            <a expr:href='data:blog.homepageUrl'>
-                <img alt='Arcaspai' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_gradient1.svg' width='120'/>
-            </a>
+            <a href='https://arcaspai.github.io/'><img alt='Arcaspai' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_gradient1.svg' width='120'/></a>
         </div>
 
         <details>
-            <summary/>
+            <summary alt='menu'/>
             <ul>
-                <li><a expr:href='data:blog.homepageUrl'>홈</a></li>
+                <li><a href='https://arcaspai.github.io/'>홈</a></li>
                 <li><a href='https://arcaspai.github.io/about.html'>소개</a></li>
                 <li><a href='https://arcaspai.github.io/works.html'>작품</a></li>
                 <li><a href='https://arcaspai.github.io/guideline.html'>가이드라인</a></li>
@@ -1126,7 +641,7 @@
         </details>
     </nav>
 
-    <!-- ===== HEADER (Homepage Only) ===== -->
+    <!-- ===== HEADER ===== -->
     <b:if cond='data:view.isHomepage'>
         <header class='index-header'>
             <div class='dim'/>
@@ -1135,10 +650,12 @@
                 <p>공상에서 이상으로의 여정</p>
             </div>
         </header>
+    <b:else/>
+        <header class='default-header'/>
     </b:if>
 
     <!-- ===== MAIN CONTENT ===== -->
-    <main class='arcaspai-main'>
+    <main>
         <b:section id='main' showaddelement='yes'>
           <b:widget id='Blog1' locked='true' title='블로그 게시물' type='Blog' version='2' visible='true'>
             <b:widget-settings>
@@ -1171,10 +688,9 @@
 
                     <!-- [VIEW 1] 404 ERROR PAGE -->
                     <b:if cond='data:view.isError'>
-                        <div class='error-page'>
-                            <h1>404</h1>
-                            <p>Something Wrong...<br/><data:navMessage/></p>
-                            <a class='go-home' expr:href='data:blog.homepageUrl'>홈으로 돌아가기</a>
+                        <div class='error'>
+                            <p>Something Wrong...</p>
+                            <p><a expr:href='data:blog.homepageUrl' style='display:inline-block; margin-top:16px; color:#9088ff;'>홈으로 돌아가기</a></p>
                         </div>
 
                     <!-- [VIEW 2] LIST / HOMEPAGE -->
@@ -1182,7 +698,7 @@
                         <div class='post-list-header'>
                             <h2>
                                 <b:if cond='data:view.isSearch and not data:view.isLabelSearch'>
-                                    검색 결과
+                                    검색 결과: <data:view.search.query/>
                                 <b:elseif cond='data:view.isLabelSearch'/>
                                     라벨: <data:blog.searchLabel/>
                                 <b:elseif cond='data:view.isArchive'/>
@@ -1196,12 +712,15 @@
                         <div class='post-cards'>
                             <b:loop values='data:posts' var='post'>
                                 <article class='post-card'>
-                                    <div class='thumb-wrap'>
+                                    <div expr:class='&quot;thumb-wrap &quot; + (data:post.firstImageUrl or data:post.thumbnailUrl ? &quot;&quot; : &quot;needs-image&quot;)' expr:data-id='data:post.id'>
                                         <a expr:href='data:post.url'>
                                             <b:if cond='data:post.firstImageUrl'>
-                                                <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/>
+                                                <img class='list-thumbnail' expr:alt='data:post.title' expr:src='data:post.firstImageUrl' loading='lazy'/>
+                                            <b:elseif cond='data:post.thumbnailUrl'/>
+                                                <img class='list-thumbnail' expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' loading='lazy'/>
                                             <b:else/>
-                                                <div class='no-img'>NO IMG</div>
+                                                <div class='no-img placeholder-box'>NO IMG</div>
+                                                <img alt='' class='real-image' style='display:none;' loading='lazy'/>
                                             </b:if>
                                         </a>
                                     </div>
@@ -1233,54 +752,24 @@
                     <b:else/>
                         <b:loop values='data:posts' var='post'>
                             <article class='post-detail'>
-                                <div class='post-detail-header'>
-                                    <b:if cond='data:post.labels'>
-                                        <a class='post-label-top' expr:href='data:post.labels.first.url'>
-                                            <data:post.labels.first.name/>
-                                        </a>
-                                    </b:if>
-                                    <h1><data:post.title/></h1>
-                                    <b:if cond='!data:view.isPage'>
-                                        <div class='post-meta-grid'>
-                                            <div>
-                                                <span class='meta-label'>AUTHOR</span>
-                                                <span class='meta-value'><data:post.author.name/></span>
-                                            </div>
-                                            <div>
-                                                <span class='meta-label'>DATE</span>
-                                                <span class='meta-value'><data:post.date/></span>
-                                            </div>
-                                            <div>
-                                                <span class='meta-label'>LABELS</span>
-                                                <span class='meta-value'>
-                                                    <b:if cond='data:post.labels'>
-                                                        <b:loop index='i' values='data:post.labels' var='label'>
-                                                            <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:i &lt; data:post.labels.size - 1'>, </b:if>
-                                                        </b:loop>
-                                                    <b:else/>
-                                                        <span>-</span>
-                                                    </b:if>
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <span class='meta-label'>SHARE</span>
-                                                <a class='meta-value' href='#' onclick='copyLinkToClipboard(); return false;' style='color:#9088ff;'>링크 복사 ↗</a>
-                                            </div>
-                                        </div>
-                                    </b:if>
-                                </div>
-                                <b:if cond='data:post.firstImageUrl'>
-                                    <div class='post-featured-wrap'>
-                                        <img alt='Main Visual' class='post-featured-image' expr:src='resizeImage(data:post.firstImageUrl, 1600)'/>
-                                    </div>
+                                <h1><data:post.title/></h1>
+                                <b:if cond='!data:view.isPage'>
+                                    <p class='post-meta'>
+                                        <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+                                        <span> &#183; <data:post.author.name/></span>
+                                        <b:if cond='data:post.labels'>
+                                            <span> &#183; </span>
+                                            <b:loop index='i' values='data:post.labels' var='label'>
+                                                <a expr:href='data:label.url'><data:label.name/></a><b:if cond='data:i &lt; data:post.labels.size - 1'>, </b:if>
+                                            </b:loop>
+                                        </b:if>
+                                    </p>
                                 </b:if>
-                                <div class='post-body-wrap'>
-                                    <div class='post-body' expr:id='"post-body-" + data:post.id'>
-                                        <data:post.body/>
-                                    </div>
-                                    <div class='comments-section'>
-                                        <b:include data='post' name='commentPicker'/>
-                                    </div>
+                                <div class='post-body' expr:id='&quot;post-body-&quot; + data:post.id'>
+                                    <data:post.body/>
+                                </div>
+                                <div class='comments-section'>
+                                    <b:include data='post' name='commentPicker'/>
                                 </div>
                             </article>
                         </b:loop>
@@ -1909,137 +1398,111 @@
         </b:section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class='arcaspai-footer'>
-        <div class='footer-inner'>
-            <div class='footer-logo'>
-                <a expr:href='data:blog.homepageUrl'>
-                    <img alt='Arcaspai' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_violet.svg'/>
-                </a>
-            </div>
-            <div class='footer-links'>
-                <a href='https://arcaspai.github.io' target='_blank'>Website</a>
-                <a href='https://arcaspai.github.io/universe.html' target='_blank'>Universe</a>
-                <a href='https://github.com/arcaspai/blogger-theme' target='_blank'>Theme</a>
-            </div>
-            <div>
-                Arcaspai Project &#169; 2021 - <span id='current-year'/> Redder. All rights reserved.<br/>
-                Powered by <a href='https://blogger.com' target='_blank'>Blogger</a>.
-            </div>
-        </div>
+    <!-- ===== FOOTER (from arcaspai.github.io) ===== -->
+    <footer>
+        <p>Arcaspai Project &#169; 2021-<span id='current-year'/> Redder. All rights reserved.</p>
+        <p>contact: <a href='mailto:arcaspai0829@gmail.com'>arcaspai0829@gmail.com</a></p>
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
         //<![CDATA[
-        // High-res image helper
+        // High-res image URL converter
         function getHighResImage(src) {
             if (!src || src.startsWith('data:')) return src;
-            if (src.includes('img.youtube.com')) return src.replace(/\/(default|mqdefault|hqdefault|sddefault)\.jpg/, "/maxresdefault.jpg");
+            // 1. YouTube thumbnail
+            if (src.includes('img.youtube.com')) {
+                return src.replace(/\/(default|mqdefault|hqdefault|sddefault)\.jpg/, "/maxresdefault.jpg");
+            }
+            // 2. Blogger / Googleusercontent
             const bloggerResizeRegex = /\/([sw][0-9]+|w[0-9]+-h[0-9]+)(-[a-z0-9-]+)?\//;
-            if (src.includes('blogger.googleusercontent.com') || src.includes('.bp.blogspot.com')) {
-                if (bloggerResizeRegex.test(src)) return src.replace(bloggerResizeRegex, "/s1600/");
-                if (src.includes('=')) return src.replace(/=(w[0-9]+|s[0-9]+).*/, "=s1600");
+            if (src.includes('blogger.googleusercontent.com') || src.includes('.bp.blogspot.com') || src.includes('googleusercontent.com')) {
+                if (bloggerResizeRegex.test(src)) {
+                    return src.replace(bloggerResizeRegex, "/s1600/");
+                }
+                if (src.includes('=')) {
+                    return src.replace(/=(w[0-9]+|s[0-9]+).*/, "=s1600");
+                }
             }
             return src;
         }
 
+        // Fetch first image from Blogger JSON feed for posts missing thumbnails
+        function fetchImageForPost(postId, container) {
+            if (!postId || !container) return;
+            var script = document.createElement('script');
+            script.src = '/feeds/posts/default/' + postId + '?alt=json-in-script&callback=handlePostResponse_' + postId;
+            document.body.appendChild(script);
+            window['handlePostResponse_' + postId] = function(json) {
+                var imageUrl = null;
+                if (json && json.entry) {
+                    var entry = json.entry;
+                    // 1. media$thumbnail
+                    if (entry.media$thumbnail && entry.media$thumbnail.url) {
+                        imageUrl = getHighResImage(entry.media$thumbnail.url);
+                    }
+                    // 2. First <img> tag in HTML content
+                    if (!imageUrl && entry.content && entry.content.$t) {
+                        var div = document.createElement('div');
+                        div.innerHTML = entry.content.$t;
+                        var img = div.querySelector('img');
+                        if (img && img.src) imageUrl = getHighResImage(img.src);
+                    }
+                    // 3. First <img> tag in summary
+                    if (!imageUrl && entry.summary && entry.summary.$t) {
+                        var div = document.createElement('div');
+                        div.innerHTML = entry.summary.$t;
+                        var img = div.querySelector('img');
+                        if (img && img.src) imageUrl = getHighResImage(img.src);
+                    }
+                }
+                if (imageUrl) {
+                    var placeholder = container.querySelector('.placeholder-box');
+                    var imgEl = container.querySelector('.real-image') || container.querySelector('img');
+                    if (placeholder) placeholder.style.display = 'none';
+                    if (imgEl) {
+                        imgEl.src = imageUrl;
+                        imgEl.style.display = 'block';
+                    }
+                }
+                delete window['handlePostResponse_' + postId];
+                if (script.parentNode) script.parentNode.removeChild(script);
+            };
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
-            // Current year in footer
+            // Set current year in footer
             var yearEl = document.getElementById('current-year');
             if (yearEl) yearEl.innerText = new Date().getFullYear();
 
-            // Init Lucide icons if available
-            if (typeof lucide !== 'undefined') lucide.createIcons();
+            // Upgrade existing thumbnail images to high-res & attach error fallback
+            document.querySelectorAll('.thumb-wrap img').forEach(function(img) {
+                if (img.src && !img.classList.contains('real-image')) {
+                    var highRes = getHighResImage(img.src);
+                    if (highRes !== img.src) img.src = highRes;
+                }
+                img.addEventListener('error', function() {
+                    var wrap = img.closest('.thumb-wrap');
+                    if (wrap) {
+                        var pid = wrap.getAttribute('data-id');
+                        if (pid) fetchImageForPost(pid, wrap);
+                    }
+                });
+            });
 
             // Upgrade post body images to high-res
             document.querySelectorAll('.post-body img').forEach(function(img) {
                 img.src = getHighResImage(img.src);
             });
-            var featuredImg = document.querySelector('.post-featured-image');
-            if (featuredImg) featuredImg.src = getHighResImage(featuredImg.src);
 
-            // Scroll Progress Bar
-            window.addEventListener('scroll', function() {
-                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                var scrolled = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-                document.getElementById('scroll-progress').style.width = scrolled + '%';
-            });
-
-            // Image Lightbox
-            var lightbox = document.getElementById('image-lightbox');
-            var lightboxImg = document.getElementById('lightbox-img');
-            var lightboxClose = document.getElementById('lightbox-close');
-            var postImages = document.querySelectorAll('.post-body img');
-
-            postImages.forEach(function(img) {
-                var parentLink = img.closest('a');
-                img.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var highResUrl = getHighResImage(img.src);
-                    if (parentLink && /\.(jpg|jpeg|png|gif|webp)$/i.test(parentLink.href)) {
-                        highResUrl = parentLink.href;
-                    } else if (parentLink && parentLink.href.includes('blogger.googleusercontent.com/img')) {
-                        highResUrl = parentLink.href;
-                    }
-                    lightboxImg.src = highResUrl;
-                    lightbox.classList.add('active');
-                });
-                if (parentLink) {
-                    parentLink.addEventListener('click', function(e) { e.preventDefault(); });
-                }
-            });
-
-            if (lightboxClose) {
-                lightboxClose.addEventListener('click', function() {
-                    lightbox.classList.remove('active');
-                    setTimeout(function() { lightboxImg.src = ''; }, 300);
-                });
-            }
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) {
-                        lightbox.classList.remove('active');
-                        setTimeout(function() { lightboxImg.src = ''; }, 300);
-                    }
-                });
-            }
-            document.addEventListener('keydown', function(e) {
-                if (e.key === "Escape" && lightbox && lightbox.classList.contains('active')) {
-                    lightbox.classList.remove('active');
-                    setTimeout(function() { lightboxImg.src = ''; }, 300);
-                }
+            // Fetch first image for containers without thumbnail
+            var needsContainers = document.querySelectorAll('.needs-image');
+            needsContainers.forEach(function(container) {
+                var postId = container.getAttribute('data-id');
+                if (postId) fetchImageForPost(postId, container);
             });
         });
-
-        // Copy link to clipboard (toast)
-        function copyLinkToClipboard() {
-            navigator.clipboard.writeText(window.location.href).then(function() {
-                var toast = document.getElementById('toast-notification');
-                if (toast) {
-                    toast.innerText = "링크가 복사되었습니다!";
-                    toast.classList.add('show');
-                    setTimeout(function() { toast.classList.remove('show'); }, 3000);
-                }
-            });
-        }
-
-        // Copy RSS link to clipboard (toast)
-        function copyRSSToClipboard() {
-            var rssUrl = window.location.origin + "/feeds/posts/default";
-            navigator.clipboard.writeText(rssUrl).then(function() {
-                var toast = document.getElementById('toast-notification');
-                if (toast) {
-                    toast.innerText = "RSS 주소가 복사되었습니다!";
-                    toast.classList.add('show');
-                    setTimeout(function() { toast.classList.remove('show'); }, 3000);
-                }
-            });
-        }
         //]]>
     </script>
 </body>
 </html>
-
