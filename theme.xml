@@ -611,9 +611,27 @@
         padding-left: 0.5ex;
     }
 
-    /* ===== WIDGET RESETS ===== */
+    /* ===== WIDGET RESETS & LAYOUT ===== */
     .widget { margin: 0; }
     .section { margin: 0; padding: 0; }
+
+    body#layout nav {
+        position: static;
+        width: 100%;
+    }
+    body#layout nav details {
+        position: static;
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    body#layout .nav-logo {
+        display: none;
+    }
+    body#layout footer {
+        position: static;
+        width: 100%;
+    }
     ]]></b:skin>
 </head>
 
@@ -625,19 +643,45 @@
             <a expr:href='data:blog.homepageUrl'><img alt='Arcaspai' src='https://raw.githubusercontent.com/arcaspai/arcaspai.github.io/main/images/logo/arcaspai_logo_gradient1.svg' width='120'/></a>
         </div>
 
-        <details>
-            <summary alt='menu'/>
-            <ul>
-                <li><a expr:href='data:blog.homepageUrl'>블로그</a></li>
-                <li><a href='https://arcaspai.blogspot.com/search'>글 전체보기</a></li>
-                <li></li>
-                <li><a href='https://arcaspai.github.io/' target='_blank'>메인 페이지</a></li>
-                <li><a href='https://arcaspai.github.io/universe.html' target='_blank'>설정집</a></li>
-                <li><a href='https://youtube.com/@arcaspai/' target='_blank'>유튜브</a></li>
-                <li><a href='https://arcaspai.itch.io/' target='_blank'>ITCH.IO</a></li>
-                <li><a href='https://arcaspai.github.io/discord.html' target='_blank'>디스코드</a></li>
-            </ul>
-        </details>
+        <b:section class='nav-menu' id='nav-menu' name='네비게이션 메뉴' showaddelement='yes'>
+          <b:widget id='LinkList1' locked='false' title='네비게이션 링크' type='LinkList' version='2' visible='true'>
+            <b:includable id='main'>
+              <details>
+                <summary alt='menu'/>
+                <div class='widget-content'>
+                  <ul>
+                    <b:if cond='data:links and data:links.size &gt; 0'>
+                      <b:loop values='data:links' var='link'>
+                        <b:with value='data:link.target ?: data:link.url' var='linkUrl'>
+                          <b:with value='data:link.name ?: data:link.title' var='linkName'>
+                            <b:if cond='data:linkName == &quot;&quot; or data:linkName == &quot;-&quot;'>
+                              <li class='menu-separator'/>
+                            <b:else/>
+                              <li>
+                                <a expr:href='data:linkUrl' expr:rel='data:linkUrl contains &quot;://&quot; and not (data:linkUrl contains &quot;blogspot.&quot;) ? &quot;noopener noreferrer&quot; : null' expr:target='data:linkUrl contains &quot;://&quot; and not (data:linkUrl contains &quot;blogspot.&quot;) ? &quot;_blank&quot; : null'>
+                                  <data:linkName/>
+                                </a>
+                              </li>
+                            </b:if>
+                          </b:with>
+                        </b:with>
+                      </b:loop>
+                    <b:else/>
+                      <li><a expr:href='data:blog.homepageUrl'>블로그</a></li>
+                      <li><a href='https://arcaspai.blogspot.com/search'>글 전체보기</a></li>
+                      <li class='menu-separator'/>
+                      <li><a href='https://arcaspai.github.io/' rel='noopener noreferrer' target='_blank'>메인 페이지</a></li>
+                      <li><a href='https://arcaspai.github.io/universe.html' rel='noopener noreferrer' target='_blank'>설정집</a></li>
+                      <li><a href='https://youtube.com/@arcaspai/' rel='noopener noreferrer' target='_blank'>유튜브</a></li>
+                      <li><a href='https://arcaspai.itch.io/' rel='noopener noreferrer' target='_blank'>ITCH.IO</a></li>
+                      <li><a href='https://arcaspai.github.io/discord.html' rel='noopener noreferrer' target='_blank'>디스코드</a></li>
+                    </b:if>
+                  </ul>
+                </div>
+              </details>
+            </b:includable>
+          </b:widget>
+        </b:section>
     </nav>
 
     <!-- ===== HEADER ===== -->
@@ -1399,8 +1443,20 @@
 
     <!-- ===== FOOTER (from arcaspai.github.io) ===== -->
     <footer>
-        <p>Arcaspai Project &#169; 2021-<span id='current-year'/> Redder. All rights reserved.</p>
-        <p>contact: <a href='mailto:arcaspai0829@gmail.com'>arcaspai0829@gmail.com</a></p>
+        <b:section class='footer-section' id='footer-section' name='푸터' showaddelement='yes'>
+          <b:widget id='HTML1' locked='false' title='푸터 정보' type='HTML' version='2' visible='true'>
+            <b:includable id='main'>
+              <div class='widget-content'>
+                <b:if cond='data:content and data:content != &quot;&quot;'>
+                  <data:content/>
+                <b:else/>
+                  <p>Arcaspai Project &#169; 2021-<span id='current-year'></span> Redder. All rights reserved.</p>
+                  <p>contact: <a href='mailto:arcaspai0829@gmail.com'>arcaspai0829@gmail.com</a></p>
+                </b:if>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
